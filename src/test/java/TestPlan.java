@@ -4,6 +4,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class TestPlan {
     private static final WebDriver driver = new ChromeDriver();
 
@@ -20,6 +22,8 @@ public class TestPlan {
         webForm.enterFirstName();
         webForm.enterLastName();
         webForm.pressSubmitButton();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        webForm.verifyAlertSuccess();
     }
 
     @AfterSuite
